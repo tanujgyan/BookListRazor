@@ -23,6 +23,9 @@
                         <th>
                             <label asp-for="Books.FirstOrDefault().Author"></label>
                         </th>
+                        <th>
+                            <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                        </th>
                         <th></th>
 
                     </tr>
@@ -31,9 +34,10 @@
                 <tr>
                     <td>@Html.DisplayFor(n => item.Name)</td>
                     <td>@Html.DisplayFor(n => item.Author)</td>
+                    <td>@Html.DisplayFor(n => item.ISBN)</td>
                     <td>
                         <button class="btn btn-danger btn-sm">Delete</button>
-                        <a class="btn btn-success btn-sm">Edit</a>
+                        <a class="btn btn-success btn-sm" asp-page="/BookList/Edit" asp-route-id="@item.Id">Edit</a>
                     </td>
                 </tr>
                         <tr>
