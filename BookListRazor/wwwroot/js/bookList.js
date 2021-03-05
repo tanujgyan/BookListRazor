@@ -1,5 +1,6 @@
-﻿$(document).ready(function () {
-    $('#bookListTable').DataTable({
+﻿var table;
+$(document).ready(function () {
+      table =  $('#bookListTable').DataTable({
         ajax: {
             url: 'api/Book',
             dataSrc: 'data'
@@ -21,15 +22,16 @@
         ]
 
     });
-});
+     
+ });
 function Delete(url) {
     swal
         ({
-        
+
             title: "Are you sure?",
             text: "Once deleted it cannot be recovered",
             icon: "warning",
-            dangermode:true
+            dangermode: true
         }).then((willDelete) => {
             $.ajax({
                 type: "DELETE",
@@ -37,9 +39,9 @@ function Delete(url) {
                 success: function (data) {
                     if (data.success) {
                         toastr.success(data.message);
-                        DataTable.ajax.reload();
+                        table.ajax.reload();
                     }
                 }
             })
-    })
+        })
 }
