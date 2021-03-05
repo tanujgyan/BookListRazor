@@ -25,8 +25,12 @@ namespace BookListRazor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //add your db connection
             services.AddDbContext<ApplicationDBContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //add support for razor pages
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            //add support for controllers
+            services.AddControllersWithViews();
 
         }
 
@@ -53,7 +57,10 @@ namespace BookListRazor
 
             app.UseEndpoints(endpoints =>
             {
+                //add razor pages support to middleware
                 endpoints.MapRazorPages();
+                //add controller support to middleware
+                endpoints.MapControllers();
             });
         }
     }
